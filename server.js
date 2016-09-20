@@ -7,13 +7,14 @@
 const
   app = require('./app'),
   http = require('http'),
+  Restypie = require('restypie'),
   db = require('./models');
 //=============================================================================
 /**
  * server instance
  */
 //=============================================================================
-const server = http.createServer(app);
+//const server = http.createServer(app);
 //=============================================================================
 /**
  * module variables
@@ -22,6 +23,15 @@ const server = http.createServer(app);
 const
   port = app.get('port'),
   env = app.get('env');
+//=============================================================================
+/**
+ * module config
+ */
+//=============================================================================
+const api = new Restypie.API({
+  path: '/api',
+  routerType: Restypie.RouterTypes.EXPRESS
+});
 //=============================================================================
 /**
  * sync db and bind server to port
@@ -38,9 +48,25 @@ db.db_conn.sync({
         console.log(model);
         console.log(' model has been created as table');
       });
-    server.listen(port, () => {
+    api.
+      registerResources({
+        users: require('./resources/user')
+      }).
+      launch(app, {port: port});
+    const server = http.createServer(app);
+    server.listen(port, err => {
+      if(err) {
+        console.log('no good');
+        console.error(err);
+        process.exit(1);
+      }
       console.log(`Server up on port ${port} in ${env} mode`);
     });
+  }).
+  catch(err => {
+    console.log('bummer!');
+    console.error(err);
+    process.exit(1);
   });
 //=============================================================================
 /**
