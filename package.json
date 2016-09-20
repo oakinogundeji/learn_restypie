@@ -1,0 +1,32 @@
+{
+  "name": "learn_restypie",
+  "version": "1.0.0",
+  "description": "a project to learn restypie",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oakinogundeji/learn_restypie.git"
+  },
+  "keywords": [
+    "restypie",
+    "api",
+    "RESTful"
+  ],
+  "author": "Telios WebDev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oakinogundeji/learn_restypie/issues"
+  },
+  "homepage": "https://github.com/oakinogundeji/learn_restypie#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "dotenv": "^2.0.0",
+    "mysql": "^2.11.1",
+    "restypie": "^1.9.0",
+    "sequelize": "^3.24.3"
+  }
+}
