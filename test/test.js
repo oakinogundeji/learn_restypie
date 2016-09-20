@@ -30,7 +30,6 @@ describe('basic app health test', function () {
         if(err) {
           done(err);
         }
-        console.log(res);
         res.body.should.equal('TEST!');
         done();
       });
