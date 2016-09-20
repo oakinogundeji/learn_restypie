@@ -24,7 +24,7 @@ describe('basic app health test', function () {
   this.timeout(5000);
   it('should respond with 200 and JSON string with value "TEST"', function (done) {
     request.
-      get('/test').
+      get('/api/test').
       expect(200).
       end(function (err, res) {
         if(err) {
